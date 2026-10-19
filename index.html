@@ -1,79 +1,26 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#123456">
-  <meta name="description" content="Training and railway safety video library of Electrical TRO Department, Bhavnagar Division, Western Railway.">
-  <title>ELECTRICAL TRO DEPARTMENT, BHAVNAGAR DIVISION, WESTERN RAILWAY – Video Library</title>
-  <style>
-    :root {
-      --navy: #123456;
-      --navy-deep: #0b2239;
-      --red: #c62828;
-      --gold: #e0b14a;
-      --ink: #172536;
-      --muted: #64748b;
-      --surface: #ffffff;
-      --page: #f2f5f8;
-      --line: #dbe3ec;
-      --shadow: 0 8px 24px rgba(15, 35, 55, .09);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0; background: var(--page); color: var(--ink);
-      font-family: "Segoe UI", Arial, Helvetica, sans-serif; line-height: 1.5;
-    }
-    .topline { height: 6px; background: linear-gradient(90deg, var(--red) 0 22%, var(--gold) 22% 27%, var(--navy) 27% 100%); }
-    header {
-      color: #fff; background: linear-gradient(120deg, var(--navy-deep), var(--navy));
-      border-bottom: 4px solid var(--gold);
-    }
-    .header-inner { width: min(1180px, calc(100% - 36px)); margin: auto; padding: 34px 0 30px; }
-    .eyebrow { color: #f4d88d; font-size: .76rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; margin: 0 0 9px; }
-    h1 { margin: 0; max-width: 900px; font-size: clamp(1.45rem, 3.5vw, 2.45rem); line-height: 1.18; letter-spacing: .015em; }
-    .subtitle { margin: 12px 0 0; color: #dce7f2; max-width: 760px; font-size: 1rem; }
-    .header-rule { width: 74px; height: 4px; border-radius: 3px; background: var(--red); margin-top: 20px; }
-    main { width: min(1180px, calc(100% - 36px)); margin: 28px auto 52px; }
-    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
-    .section-heading { margin: 0; color: var(--navy); font-size: 1.35rem; }
-    .count { color: var(--muted); font-size: .9rem; margin-top: 3px; }
-    .search { width: min(100%, 330px); padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 9px; background: #fff; color: var(--ink); font: inherit; outline: none; }
-    .search:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(18,52,86,.12); }
-    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 13px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; min-width: 0; transition: transform .18s ease, box-shadow .18s ease; }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 13px 30px rgba(15,35,55,.14); }
-    .thumb-link { display: block; position: relative; background: #dce5ee; aspect-ratio: 16 / 9; overflow: hidden; }
-    .thumb { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .25s ease; }
-    .card:hover .thumb { transform: scale(1.035); }
-    .thumb-fallback { display: none; position: absolute; inset: 0; align-items: center; justify-content: center; flex-direction: column; gap: 9px; color: #fff; text-align: center; padding: 20px; background: linear-gradient(135deg, var(--navy), #315b7f); }
-    .thumb-fallback svg { width: 48px; height: 48px; }
-    .thumb-fallback span { font-size: .85rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-    .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%; background: rgba(198,40,40,.94); color: white; border: 2px solid rgba(255,255,255,.9); box-shadow: 0 4px 15px rgba(0,0,0,.25); }
-    .play svg { width: 22px; height: 22px; margin-left: 3px; }
-    .card-body { padding: 17px 17px 16px; display: flex; flex-direction: column; flex: 1; }
-    .number { color: var(--red); font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 7px; }
-    .card h3 { font-size: 1.02rem; line-height: 1.42; margin: 0 0 17px; color: #152d45; overflow-wrap: anywhere; }
-    .watch { margin-top: auto; display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: #fff; background: var(--navy); border-radius: 7px; padding: 10px 13px; font-size: .9rem; font-weight: 700; transition: background .15s ease; }
-    .watch:hover, .watch:focus-visible { background: var(--red); }
-    .watch svg { width: 17px; height: 17px; }
-    .empty { display: none; background: white; padding: 28px; border: 1px solid var(--line); border-radius: 12px; text-align: center; color: var(--muted); }
-    .notice { margin-top: 26px; padding: 15px 17px; border-left: 4px solid var(--gold); background: #fff; border-radius: 5px 10px 10px 5px; color: #435366; font-size: .91rem; }
-    footer { background: #0b2239; color: #d7e1ec; padding: 22px 18px; text-align: center; font-size: .84rem; }
-    footer strong { color: #fff; }
-    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 580px) {
-      .header-inner { width: min(100% - 28px, 1180px); padding: 27px 0 25px; }
-      main { width: min(100% - 28px, 1180px); margin-top: 22px; }
-      .grid { grid-template-columns: 1fr; gap: 15px; }
-      .toolbar { align-items: stretch; }
-      .search { width: 100%; }
-      .card-body { padding: 15px; }
-    }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
-  </style>
-</head>
+<header>
+  <div class="header-inner">
+    <img
+      class="railways-logo"
+      src="https://upload.wikimedia.org/wikipedia/en/8/83/Indian_Railways.svg"
+      alt="Indian Railways Logo"
+    />
+
+    <div class="header-text">
+      <p class="eyebrow">Western Railway · Bhavnagar Division</p>
+
+      <h1>
+        ELECTRICAL TRO DEPARTMENT,<br>
+        BHAVNAGAR DIVISION, WESTERN RAILWAY
+      </h1>
+
+      <p class="subtitle">Training &amp; Safety Video Library</p>
+      <div class="header-rule" aria-hidden="true"></div>
+    </div>
+  </div>
+</header>
 <body>
   <div class="topline" aria-hidden="true"></div>
   <header>
