@@ -3,81 +3,213 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#123456">
+  <meta name="theme-color" content="#0b2239">
   <meta name="description" content="Training and railway safety video library of Electrical TRO Department, Bhavnagar Division, Western Railway.">
   <title>ELECTRICAL TRO DEPARTMENT, BHAVNAGAR DIVISION, WESTERN RAILWAY – Video Library</title>
   <style>
     :root {
       --navy: #123456;
       --navy-deep: #0b2239;
+      --navy-night: #07172a;
       --red: #c62828;
       --gold: #e0b14a;
+      --green: #2e9e5b;
       --ink: #172536;
       --muted: #64748b;
       --surface: #ffffff;
       --page: #f2f5f8;
       --line: #dbe3ec;
       --shadow: 0 8px 24px rgba(15, 35, 55, .09);
+      --wrap: min(1180px, calc(100% - 36px));
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body {
-      margin: 0; background: var(--page); color: var(--ink);
-      font-family: "Segoe UI", Arial, Helvetica, sans-serif; line-height: 1.5;
-    }
+    body { margin: 0; background: var(--page); color: var(--ink); font-family: "Segoe UI", "Noto Sans Devanagari", Arial, Helvetica, sans-serif; line-height: 1.5; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+    /* ---------- HEADER ---------- */
     .topline { height: 6px; background: linear-gradient(90deg, var(--red) 0 22%, var(--gold) 22% 27%, var(--navy) 27% 100%); }
     header {
-      color: #fff; background: linear-gradient(120deg, var(--navy-deep), var(--navy));
-      border-bottom: 4px solid var(--gold);
+      position: relative; overflow: hidden; color: #fff;
+      background:
+        radial-gradient(900px 380px at 88% -10%, rgba(224,177,74,.20), transparent 60%),
+        radial-gradient(700px 400px at 0% 110%, rgba(198,40,40,.22), transparent 60%),
+        linear-gradient(120deg, var(--navy-night), var(--navy-deep) 55%, var(--navy));
     }
-    .header-inner { width: min(1180px, calc(100% - 36px)); margin: auto; padding: 34px 0 30px; }
-    .brand { display: flex; align-items: center; gap: 24px; }
-    .logo-wrap { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 50%; padding: 4px; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
-    .logo { display: block; height: 96px; width: 96px; border-radius: 50%; object-fit: contain; }
+    /* diagonal speed-lines */
+    header::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+      background: repeating-linear-gradient(115deg, transparent 0 46px, rgba(255,255,255,.035) 46px 48px);
+    }
+    .header-inner { position: relative; width: var(--wrap); margin: auto; padding: 38px 0 54px; }
+    .brand { display: flex; align-items: center; gap: 26px; }
+    .logo-wrap { flex: 0 0 auto; background: #fff; border-radius: 50%; padding: 5px; box-shadow: 0 0 0 4px rgba(224,177,74,.55), 0 10px 26px rgba(0,0,0,.45); }
+    .logo { display: block; height: 108px; width: 108px; border-radius: 50%; object-fit: contain; }
     .brand-text { min-width: 0; }
-    .eyebrow { color: #f4d88d; font-size: .76rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; margin: 0 0 9px; }
-    h1 { margin: 0; max-width: 900px; font-size: clamp(1.45rem, 3.5vw, 2.45rem); line-height: 1.18; letter-spacing: .015em; }
-    .subtitle { margin: 12px 0 0; color: #dce7f2; max-width: 760px; font-size: 1rem; }
-    .header-rule { width: 74px; height: 4px; border-radius: 3px; background: var(--red); margin-top: 20px; }
-    main { width: min(1180px, calc(100% - 36px)); margin: 28px auto 52px; }
-    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
-    .section-heading { margin: 0; color: var(--navy); font-size: 1.35rem; }
-    .count { color: var(--muted); font-size: .9rem; margin-top: 3px; }
-    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 13px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; min-width: 0; transition: transform .18s ease, box-shadow .18s ease; }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 13px 30px rgba(15,35,55,.14); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: #f4d88d; font-size: .76rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 10px; }
+    .eyebrow::before { content: ""; width: 28px; height: 3px; background: var(--red); border-radius: 2px; }
+    h1 { margin: 0; max-width: 900px; font-size: clamp(1.4rem, 3.4vw, 2.4rem); line-height: 1.18; letter-spacing: .015em; text-wrap: balance; }
+    .subtitle { margin: 12px 0 0; color: #dce7f2; max-width: 700px; font-size: 1.05rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 999px; font-weight: 700; font-size: .93rem; text-decoration: none; transition: transform .15s ease, background .15s ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn svg { width: 18px; height: 18px; }
+    .btn-primary { background: var(--red); color: #fff; box-shadow: 0 6px 16px rgba(198,40,40,.4); }
+    .btn-primary:hover { background: #d63636; }
+    .btn-ghost { color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); }
+    /* signal lights */
+    .signal { position: absolute; right: 0; top: 38px; display: flex; flex-direction: column; gap: 9px; padding: 12px 10px; background: #050e1a; border: 2px solid #26405c; border-radius: 22px; box-shadow: 0 8px 20px rgba(0,0,0,.4); }
+    .signal i { display: block; width: 18px; height: 18px; border-radius: 50%; }
+    .signal i:nth-child(1) { background: var(--red); box-shadow: 0 0 14px 3px rgba(198,40,40,.7); }
+    .signal i:nth-child(2) { background: #3a3317; }
+    .signal i:nth-child(3) { background: #14301f; }
+    /* rail track */
+    .track { position: absolute; left: 0; right: 0; bottom: 0; height: 26px; background: var(--navy-night); border-top: 4px solid var(--gold); }
+    .track::before { /* sleepers */
+      content: ""; position: absolute; inset: 0;
+      background: repeating-linear-gradient(90deg, transparent 0 22px, #3d2f21 22px 32px);
+      opacity: .85;
+    }
+    .track::after { /* two rails */
+      content: ""; position: absolute; left: 0; right: 0; top: 5px; height: 12px;
+      background: linear-gradient(#aab6c4 0 3px, transparent 3px 9px, #aab6c4 9px 12px);
+      opacity: .75;
+    }
+
+    /* ---------- STATS STRIP ---------- */
+    .stats { width: var(--wrap); margin: -26px auto 0; position: relative; z-index: 2; display: grid; grid-template-columns: repeat(4, 1fr); background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 12px 30px rgba(15,35,55,.13); overflow: hidden; }
+    .stat { padding: 16px 20px; display: flex; align-items: center; gap: 14px; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: 0; }
+    .stat b { font-size: 1.75rem; line-height: 1; color: var(--navy); font-variant-numeric: tabular-nums; }
+    .stat span { color: var(--muted); font-size: .82rem; line-height: 1.3; font-weight: 600; }
+
+    main { width: var(--wrap); margin: 0 auto 56px; }
+
+    /* ---------- INTRO ---------- */
+    .intro { margin-top: 36px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 24px; }
+    .panel { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px 28px; box-shadow: var(--shadow); }
+    .kicker { color: var(--red); font-size: .74rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 8px; }
+    .panel h2 { margin: 0 0 12px; color: var(--navy); font-size: 1.4rem; line-height: 1.25; }
+    .panel p { margin: 0 0 12px; color: #3b4b5d; }
+    .panel p:last-child { margin-bottom: 0; }
+    .features { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .feature { padding: 14px; background: var(--page); border-radius: 10px; border-top: 3px solid var(--gold); }
+    .feature svg { width: 26px; height: 26px; color: var(--navy); margin-bottom: 6px; }
+    .feature strong { display: block; color: var(--navy); font-size: .92rem; }
+    .feature span { color: var(--muted); font-size: .82rem; line-height: 1.4; display: block; margin-top: 2px; }
+    .audience { background: linear-gradient(160deg, var(--navy-deep), var(--navy)); color: #fff; border: 0; }
+    .audience h2 { color: #fff; }
+    .audience .kicker { color: #f4d88d; }
+    .audience ul { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+    .audience li { display: flex; align-items: center; gap: 12px; padding: 11px 14px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: 10px; font-weight: 600; }
+    .audience li::before { content: ""; flex: 0 0 auto; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px rgba(224,177,74,.25); }
+    .audience li small { display: block; color: #b8c8d9; font-weight: 400; font-size: .8rem; }
+
+    /* ---------- TOOLBAR ---------- */
+    .toolbar { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin: 42px 0 20px; flex-wrap: wrap; scroll-margin-top: 12px; }
+    .section-heading { margin: 0; color: var(--navy); font-size: 1.5rem; line-height: 1.2; }
+    .section-heading::after { content: ""; display: block; width: 56px; height: 4px; border-radius: 3px; background: var(--red); margin-top: 8px; }
+    .count { color: var(--muted); font-size: .9rem; margin-top: 8px; }
+    .search { position: relative; flex: 0 1 320px; min-width: 220px; }
+    .search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--muted); }
+    .search input { width: 100%; padding: 11px 14px 11px 40px; border: 1.5px solid var(--line); border-radius: 999px; font: inherit; font-size: .95rem; background: #fff; color: var(--ink); }
+    .search input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(18,52,86,.15); }
+
+    /* ---------- CARDS ---------- */
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; min-width: 0; position: relative; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .card::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: linear-gradient(90deg, var(--red), var(--gold)); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 18px 38px rgba(15,35,55,.18); border-color: #c4d2e1; }
+    .card:hover::after { transform: scaleX(1); }
     .thumb-link { display: block; position: relative; background: #dce5ee; aspect-ratio: 16 / 9; overflow: hidden; }
-    .thumb { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .25s ease; }
-    .card:hover .thumb { transform: scale(1.035); }
+    .thumb-link::before { /* bottom shade for legibility */
+      content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(180deg, rgba(7,23,42,.35) 0, transparent 34%, transparent 58%, rgba(7,23,42,.55) 100%);
+    }
+    .thumb { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .35s ease; }
+    .card:hover .thumb { transform: scale(1.06); }
     .thumb-fallback { display: none; position: absolute; inset: 0; align-items: center; justify-content: center; flex-direction: column; gap: 9px; color: #fff; text-align: center; padding: 20px; background: linear-gradient(135deg, var(--navy), #315b7f); }
     .thumb-fallback svg { width: 48px; height: 48px; }
     .thumb-fallback span { font-size: .85rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-    .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%; background: rgba(198,40,40,.94); color: white; border: 2px solid rgba(255,255,255,.9); box-shadow: 0 4px 15px rgba(0,0,0,.25); }
-    .play svg { width: 22px; height: 22px; margin-left: 3px; }
-    .card-body { padding: 17px 17px 16px; display: flex; flex-direction: column; flex: 1; }
-    .number { color: var(--red); font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 7px; }
-    .card h3 { font-size: 1.02rem; line-height: 1.42; margin: 0 0 17px; color: #152d45; overflow-wrap: anywhere; }
-    .notice { margin-top: 26px; padding: 15px 17px; border-left: 4px solid var(--gold); background: #fff; border-radius: 5px 10px 10px 5px; color: #435366; font-size: .91rem; }
-    footer { background: #0b2239; color: #d7e1ec; padding: 22px 18px; text-align: center; font-size: .84rem; }
-    footer strong { color: #fff; }
-    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 580px) {
-      .header-inner { width: min(100% - 28px, 1180px); padding: 27px 0 25px; }
-      .brand { gap: 14px; align-items: flex-start; }
-      .logo { height: 60px; width: 60px; }
-      .logo-wrap { padding: 3px; }
-      main { width: min(100% - 28px, 1180px); margin-top: 22px; }
-      .grid { grid-template-columns: 1fr; gap: 15px; }
-      .toolbar { align-items: stretch; }
-      .card-body { padding: 15px; }
+    .chip { position: absolute; z-index: 2; left: 12px; top: 12px; max-width: calc(100% - 70px); padding: 4px 11px; border-radius: 999px; background: rgba(11,34,57,.88); color: #fff; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.28); backdrop-filter: blur(4px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .vnum { position: absolute; z-index: 2; right: 12px; bottom: 8px; color: #fff; font-size: 1.7rem; font-weight: 800; line-height: 1; opacity: .85; text-shadow: 0 2px 8px rgba(0,0,0,.6); font-variant-numeric: tabular-nums; }
+    .play { position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; display: grid; place-items: center; border-radius: 50%; background: rgba(198,40,40,.95); color: #fff; border: 2.5px solid rgba(255,255,255,.95); box-shadow: 0 0 0 0 rgba(198,40,40,.5), 0 6px 18px rgba(0,0,0,.35); transition: transform .2s ease; }
+    .card:hover .play { transform: translate(-50%, -50%) scale(1.12); animation: pulse 1.4s ease-out infinite; }
+    @keyframes pulse { to { box-shadow: 0 0 0 16px rgba(198,40,40,0), 0 6px 18px rgba(0,0,0,.35); } }
+    .play svg { width: 24px; height: 24px; margin-left: 3px; }
+    .card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+    .number { color: var(--red); font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
+    .card h3 { font-size: 1.03rem; line-height: 1.42; margin: 0 0 16px; color: #152d45; overflow-wrap: anywhere; }
+    .watch { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: 999px; background: var(--navy); color: #fff; font-size: .85rem; font-weight: 700; text-decoration: none; transition: background .15s ease, gap .15s ease; }
+    .watch svg { width: 16px; height: 16px; }
+    .watch:hover { background: var(--red); gap: 11px; }
+    .empty { display: none; text-align: center; padding: 40px 16px; color: var(--muted); background: #fff; border: 1px dashed var(--line); border-radius: 14px; }
+
+    .notice { margin-top: 28px; padding: 15px 18px; border-left: 4px solid var(--gold); background: #fff; border-radius: 5px 10px 10px 5px; color: #435366; font-size: .91rem; }
+
+    /* ---------- FOOTER ---------- */
+    footer { position: relative; background: var(--navy-night); color: #c5d3e1; margin-top: 8px; }
+    footer .track { position: relative; height: 22px; }
+    .foot-inner { width: var(--wrap); margin: auto; padding: 38px 0 26px; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 32px; }
+    .foot-brand { display: flex; gap: 16px; align-items: flex-start; }
+    .foot-brand img { width: 58px; height: 58px; border-radius: 50%; background: #fff; padding: 3px; flex: 0 0 auto; }
+    .foot-brand strong { display: block; color: #fff; font-size: 1rem; line-height: 1.3; }
+    .foot-brand span { display: block; font-size: .84rem; margin-top: 4px; }
+    footer h4 { margin: 0 0 12px; color: #f4d88d; font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; }
+    footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: .9rem; }
+    footer li a { text-decoration: none; }
+    footer li a:hover { color: #fff; text-decoration: underline; }
+    .foot-bar { border-top: 1px solid rgba(255,255,255,.12); }
+    .foot-bar-inner { width: var(--wrap); margin: auto; padding: 14px 0 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: .8rem; color: #94a8bd; }
+    .to-top { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.25); color: #fff; text-decoration: none; font-weight: 600; }
+    .to-top:hover { background: rgba(255,255,255,.1); }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .intro { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border-right: 0; }
+      .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .foot-inner { grid-template-columns: 1fr 1fr; }
+      .foot-brand { grid-column: 1 / -1; }
+      .signal { display: none; }
     }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+    @media (max-width: 580px) {
+      :root { --wrap: calc(100% - 28px); }
+      .header-inner { padding: 26px 0 46px; }
+      .brand { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .logo { height: 76px; width: 76px; }
+      .logo-wrap { padding: 4px; }
+      .subtitle { font-size: .98rem; }
+      .hero-actions .btn { flex: 1 1 100%; justify-content: center; }
+      .stat { padding: 13px 14px; gap: 10px; }
+      .stat b { font-size: 1.4rem; }
+      .stat span { font-size: .75rem; }
+      .panel { padding: 20px 18px; }
+      .features { grid-template-columns: 1fr; }
+      .feature { display: grid; grid-template-columns: 34px 1fr; column-gap: 10px; align-items: center; }
+      .feature svg { grid-row: span 2; margin: 0; }
+      .toolbar { margin-top: 34px; align-items: stretch; }
+      .search { flex: 1 1 100%; }
+      .grid { grid-template-columns: 1fr; gap: 16px; }
+      .card-body { padding: 15px; }
+      .watch { width: 100%; justify-content: center; padding: 11px 16px; }
+      .foot-inner { grid-template-columns: 1fr; gap: 24px; padding-top: 30px; }
+      .foot-bar-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
   </style>
 </head>
 <body>
   <div class="topline" aria-hidden="true"></div>
+
+  <!-- ===== HEADER ===== -->
   <header>
     <div class="header-inner">
+      <div class="signal" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="brand">
         <!-- Indian Railways logo: keep indian-railways-logo.png in the same folder as index.html -->
         <div class="logo-wrap" id="logoWrap">
@@ -87,117 +219,278 @@
           <p class="eyebrow">Western Railway · Bhavnagar Division</p>
           <h1>ELECTRICAL TRO DEPARTMENT,<br>BHAVNAGAR DIVISION, WESTERN RAILWAY</h1>
           <p class="subtitle">Training &amp; Safety Video Library</p>
-          <div class="header-rule" aria-hidden="true"></div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#library"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10-6.5z"/></svg>Browse Videos</a>
+            <a class="btn btn-ghost" href="#about">About the Library</a>
+          </div>
         </div>
       </div>
     </div>
+    <div class="track" aria-hidden="true"></div>
   </header>
 
+  <!-- ===== STATS ===== -->
+  <section class="stats" aria-label="Library at a glance">
+    <div class="stat"><b>10</b><span>Training &amp;<br>awareness videos</span></div>
+    <div class="stat"><b>2</b><span>Languages:<br>Hindi &amp; English</span></div>
+    <div class="stat"><b>4</b><span>Crew categories<br>served</span></div>
+    <div class="stat"><b>Any</b><span>Device: phone,<br>tablet or PC</span></div>
+  </section>
+
   <main>
-    <div class="toolbar">
+    <!-- ===== INTRODUCTION ===== -->
+    <section class="intro" id="about" aria-label="About the video library">
+      <div class="panel">
+        <p class="kicker">Welcome</p>
+        <h2>One place for crew training and safety awareness</h2>
+        <p>The Electrical TRO Department of Bhavnagar Division brings its training and safety awareness videos together in this library, so that every member of the running staff can learn, revise and refresh key safety practices at any time.</p>
+        <p>The videos cover important safety topics such as KAVACH, RS Valve, Look Back, Cattle Run Over and the Working Time Table, presented in simple language to make the message clear and easy to remember.</p>
+        <div class="features">
+          <div class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+            <strong>Safety first</strong><span>Clear, practical awareness messages</span>
+          </div>
+          <div class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 5l9 4.5-9 4.5z"/><path d="M7 12v4.5c0 1 2.2 2.5 5 2.5s5-1.5 5-2.5V12"/></svg>
+            <strong>Training</strong><span>Learn and revise at your own pace</span>
+          </div>
+          <div class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>
+            <strong>Anywhere</strong><span>Works on phone, tablet and PC</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel audience">
+        <p class="kicker">Who is it for</p>
+        <h2>Made for frontline crew and their supervisors</h2>
+        <ul>
+          <li><span>Loco Pilots<small>Safe driving practices</small></span></li>
+          <li><span>Assistant Loco Pilots<small>Duties and alertness on the footplate</small></span></li>
+          <li><span>Chief Loco Inspectors<small>Counselling and crew guidance</small></span></li>
+          <li><span>Crew Controllers &amp; Lobby Staff<small>Awareness and coordination</small></span></li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- ===== LIBRARY ===== -->
+    <div class="toolbar" id="library">
       <div>
         <h2 class="section-heading">Video Library</h2>
         <div class="count"><span id="visibleCount">10</span> training and awareness videos</div>
       </div>
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="searchBox" type="search" placeholder="Search videos…" aria-label="Search videos" autocomplete="off">
+      </label>
     </div>
 
     <section class="grid" id="videoGrid" aria-label="Training videos">
-      <!-- Thumbnail images use Google Drive's thumbnail endpoint. If a thumbnail is unavailable, a branded fallback appears. -->
-      <article class="card" data-search="sr dee sir interacting with crew and advise them to be alert on duty crew alert duty safety">
-        <a class="thumb-link" href="https://drive.google.com/file/d/1VYfCPi1twn4zh4rMuKHagv8ht1ZUXVYi/view" target="_blank" rel="noopener noreferrer" aria-label="Open video: Sr.DEE Sir interacting with crew and advise them to be alert on duty">
-          <img class="thumb" src="Sr.DEE Sir interacting with crew and advise them to be alert on duty.jpg" alt="Video thumbnail" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>Railway Safety</span></div>
+      <article class="card" data-search="sr dee sir interacting with crew and advise them to be alert on duty crew alert duty safety crew counselling">
+        <a class="thumb-link" href="https://youtube.com/shorts/k-Pk_SWoMoI?si=5WKr6EmDBKH2ILAj" target="_blank" rel="noopener noreferrer" aria-label="Play video: Sr.DEE Sir interacting with crew and advise them to be alert on duty">
+          <img class="thumb" src="Sr.DEE Sir interacting with crew and advise them to be alert on duty.jpg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>Crew Counselling</span></div>
+          <span class="chip">Crew Counselling</span>
+          <span class="vnum">01</span>
           <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10-6.5z"/></svg></span>
         </a>
-        <div class="card-body"><div class="number">Video 01</div><h3>Sr.DEE Sir interacting with crew and advise them to be alert on duty</h3></div>
+        <div class="card-body">
+          <div class="number">Video 01</div>
+          <h3>Sr.DEE Sir interacting with crew and advise them to be alert on duty</h3>
+          <a class="watch" href="https://youtube.com/shorts/k-Pk_SWoMoI?si=5WKr6EmDBKH2ILAj" target="_blank" rel="noopener noreferrer" aria-label="Watch: Sr.DEE Sir interacting with crew and advise them to be alert on duty">Watch video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </article>
 
-      <article class="card" data-search="vcd acknowledgment via hand push button">
-        <a class="thumb-link" href="https://drive.google.com/file/d/1Y4PeULtKAC-N-uC5vsUYR-CXiKw2tiKJ/view" target="_blank" rel="noopener noreferrer" aria-label="Open video: VCD Acknowledgment via Hand Push Button">
-          <img class="thumb" src="VCD Acknowledgment via Hand Push Button.jpg" alt="Video thumbnail" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>VCD Awareness</span></div>
+      <article class="card" data-search="vcd acknowledgment via hand push button loco operation">
+        <a class="thumb-link" href="https://youtube.com/shorts/ZdhjITEh3G8?si=jGjtb3xc9SQr5Jng" target="_blank" rel="noopener noreferrer" aria-label="Play video: VCD Acknowledgment via Hand Push Button">
+          <img class="thumb" src="VCD Acknowledgment via Hand Push Button.jpg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>Loco Operation</span></div>
+          <span class="chip">Loco Operation</span>
+          <span class="vnum">02</span>
           <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10-6.5z"/></svg></span>
         </a>
-        <div class="card-body"><div class="number">Video 02</div><h3>VCD Acknowledgment via Hand Push Button</h3></div>
+        <div class="card-body">
+          <div class="number">Video 02</div>
+          <h3>VCD Acknowledgment via Hand Push Button</h3>
+          <a class="watch" href="https://youtube.com/shorts/ZdhjITEh3G8?si=jGjtb3xc9SQr5Jng" target="_blank" rel="noopener noreferrer" aria-label="Watch: VCD Acknowledgment via Hand Push Button">Watch video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </article>
 
-      <article class="card" data-search="cug jpo motu patlu">
-        <a class="thumb-link" href="https://drive.google.com/file/d/11w_sd7zh05fZaWpNWDATrjImH3gbWlF1/view" target="_blank" rel="noopener noreferrer" aria-label="Open video: CUG JPO with Motu Patlu">
-          <img class="thumb" src="CUG JPO with Motu Patlu.jpg" alt="Video thumbnail" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>Training Video</span></div>
+      <article class="card" data-search="cug jpo motu patlu communication">
+        <a class="thumb-link" href="https://youtu.be/vzmbpDycN4Y?si=47k0t_lzui-KODY_" target="_blank" rel="noopener noreferrer" aria-label="Play video: CUG JPO with Motu Patlu">
+          <img class="thumb" src="CUG JPO with Motu Patlu.jpg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>Communication</span></div>
+          <span class="chip">Communication</span>
+          <span class="vnum">03</span>
           <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10-6.5z"/></svg></span>
         </a>
-        <div class="card-body"><div class="number">Video 03</div><h3>CUG JPO with Motu Patlu</h3></div>
+        <div class="card-body">
+          <div class="number">Video 03</div>
+          <h3>CUG JPO with Motu Patlu</h3>
+          <a class="watch" href="https://youtu.be/vzmbpDycN4Y?si=47k0t_lzui-KODY_" target="_blank" rel="noopener noreferrer" aria-label="Watch: CUG JPO with Motu Patlu">Watch video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </article>
 
-      <article class="card" data-search="शेरु महाराज की सेफटि चेकलिस्ट शेरु महाराज safety checklist">
-        <a class="thumb-link" href="https://drive.google.com/file/d/1S_uY58Tx_GwLW7iITAUYcTLyFR8__e60/view" target="_blank" rel="noopener noreferrer" aria-label="Open video: शेरु महाराज की सेफटि चेकलिस्ट">
-          <img class="thumb" src="शेरु महाराज की सेफटि चेकलिस्ट.jpg" alt="Video thumbnail" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <article class="card" data-search="शेरु महाराज की सेफटि चेकलिस्ट शेरु महाराज safety checklist safety checklist">
+        <a class="thumb-link" href="https://youtu.be/ZpkJsjrEzW8?si=dBpAMdh1I63bqJnj" target="_blank" rel="noopener noreferrer" aria-label="Play video: शेरु महाराज की सेफटि चेकलिस्ट">
+          <img class="thumb" src="शेरु महाराज की सेफटि चेकलिस्ट.jpg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>Safety Checklist</span></div>
+          <span class="chip">Safety Checklist</span>
+          <span class="vnum">04</span>
           <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10-6.5z"/></svg></span>
         </a>
-        <div class="card-body"><div class="number">Video 04</div><h3>शेरु महाराज की सेफटि चेकलिस्ट</h3></div>
+        <div class="card-body">
+          <div class="number">Video 04</div>
+          <h3>शेरु महाराज की सेफटि चेकलिस्ट</h3>
+          <a class="watch" href="https://youtu.be/ZpkJsjrEzW8?si=dBpAMdh1I63bqJnj" target="_blank" rel="noopener noreferrer" aria-label="Watch: शेरु महाराज की सेफटि चेकलिस्ट">Watch video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </article>
 
-      <article class="card" data-search="तेज नहीं सुरक्षित a railway safety awareness film">
-        <a class="thumb-link" href="https://drive.google.com/file/d/1XGGBr4KmmWGF_H2DssXraNxbrgwnzdLI/view" target="_blank" rel="noopener noreferrer" aria-label="Open video: तेज नहीं - सुरक्षित A Railway Safety Awareness Film">
-          <img class="thumb" src="तेज नहीं - सुरक्षित  A Railway Safety Awareness Film.jpg" alt="Video thumbnail" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <article class="card" data-search="तेज नहीं सुरक्षित a railway safety awareness film safety awareness">
+        <a class="thumb-link" href="https://youtu.be/1LxXyBth57g?si=WKSOzVTnhYvFuGvg" target="_blank" rel="noopener noreferrer" aria-label="Play video: तेज नहीं - सुरक्षित | A Railway Safety Awareness Film">
+          <img class="thumb" src="तेज नहीं - सुरक्षित  A Railway Safety Awareness Film.jpg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>Safety Awareness</span></div>
+          <span class="chip">Safety Awareness</span>
+          <span class="vnum">05</span>
           <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10-6.5z"/></svg></span>
         </a>
-        <div class="card-body"><div class="number">Video 05</div><h3>तेज नहीं - सुरक्षित | A Railway Safety Awareness Film</h3></div>
+        <div class="card-body">
+          <div class="number">Video 05</div>
+          <h3>तेज नहीं - सुरक्षित | A Railway Safety Awareness Film</h3>
+          <a class="watch" href="https://youtu.be/1LxXyBth57g?si=WKSOzVTnhYvFuGvg" target="_blank" rel="noopener noreferrer" aria-label="Watch: तेज नहीं - सुरक्षित | A Railway Safety Awareness Film">Watch video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </article>
 
-      <article class="card" data-search="cattle run over cro awareness video">
-        <a class="thumb-link" href="https://drive.google.com/file/d/15QCGNI1eCO6Rf9bKgAMXrOcdrU_N0qMh/view" target="_blank" rel="noopener noreferrer" aria-label="Open video: Cattle Run Over (CRO) Awareness Video">
-          <img class="thumb" src="Cattle Run Over (CRO) Awareness Video.jpg" alt="Video thumbnail" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>CRO Awareness</span></div>
+      <article class="card" data-search="cattle run over cro awareness video safety awareness">
+        <a class="thumb-link" href="https://youtu.be/stMr3MOJrVI?si=E5fR3GrwWB3gwA-_" target="_blank" rel="noopener noreferrer" aria-label="Play video: Cattle Run Over (CRO) Awareness Video">
+          <img class="thumb" src="Cattle Run Over (CRO) Awareness Video.jpg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>Safety Awareness</span></div>
+          <span class="chip">Safety Awareness</span>
+          <span class="vnum">06</span>
           <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10-6.5z"/></svg></span>
         </a>
-        <div class="card-body"><div class="number">Video 06</div><h3>Cattle Run Over (CRO) Awareness Video</h3></div>
+        <div class="card-body">
+          <div class="number">Video 06</div>
+          <h3>Cattle Run Over (CRO) Awareness Video</h3>
+          <a class="watch" href="https://youtu.be/stMr3MOJrVI?si=E5fR3GrwWB3gwA-_" target="_blank" rel="noopener noreferrer" aria-label="Watch: Cattle Run Over (CRO) Awareness Video">Watch video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </article>
 
-      <article class="card" data-search="kavach सुरक्षित रेल संचालन की ओर एक और कदम motu patlu">
-        <a class="thumb-link" href="https://drive.google.com/file/d/19Qd8MkohwcGgr7NP0YJMhXi3B-I1qrWJ/view" target="_blank" rel="noopener noreferrer" aria-label="Open video: KAVACH सुरक्षित रेल संचालन की ओर एक और कदम Motu Patlu के साथ">
-          <img class="thumb" src="KAVACH सुरक्षित रेल संचालन की ओर एक और कदम  Motu Patlu के साथ.jpg" alt="Video thumbnail" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>KAVACH Awareness</span></div>
+      <article class="card" data-search="kavach सुरक्षित रेल संचालन की ओर एक और कदम motu patlu kavach / atp">
+        <a class="thumb-link" href="https://drive.google.com/file/d/19Qd8MkohwcGgr7NP0YJMhXi3B-I1qrWJ/view" target="_blank" rel="noopener noreferrer" aria-label="Play video: KAVACH सुरक्षित रेल संचालन की ओर एक और कदम | Motu Patlu के साथ">
+          <img class="thumb" src="KAVACH सुरक्षित रेल संचालन की ओर एक और कदम  Motu Patlu के साथ.jpg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>KAVACH / ATP</span></div>
+          <span class="chip">KAVACH / ATP</span>
+          <span class="vnum">07</span>
           <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10-6.5z"/></svg></span>
         </a>
-        <div class="card-body"><div class="number">Video 07</div><h3>KAVACH सुरक्षित रेल संचालन की ओर एक और कदम | Motu Patlu के साथ</h3></div>
+        <div class="card-body">
+          <div class="number">Video 07</div>
+          <h3>KAVACH सुरक्षित रेल संचालन की ओर एक और कदम | Motu Patlu के साथ</h3>
+          <a class="watch" href="https://drive.google.com/file/d/19Qd8MkohwcGgr7NP0YJMhXi3B-I1qrWJ/view" target="_blank" rel="noopener noreferrer" aria-label="Watch: KAVACH सुरक्षित रेल संचालन की ओर एक और कदम | Motu Patlu के साथ">Watch video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </article>
 
-      <article class="card" data-search="rs valve का महत्व motu patlu special indian railways safety awareness">
-        <a class="thumb-link" href="https://drive.google.com/file/d/1iEOhQewL4_vvvAkBGXnkYyN1o1iE8C5Y/view" target="_blank" rel="noopener noreferrer" aria-label="Open video: RS Valve का महत्व Motu Patlu Special – Indian Railways Safety Awareness">
-          <img class="thumb" src="RS Valve का महत्व  Motu Patlu Special – Indian Railways Safety Awareness.jpg" alt="Video thumbnail" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>RS Valve Training</span></div>
+      <article class="card" data-search="rs valve का महत्व motu patlu special indian railways safety awareness rs valve">
+        <a class="thumb-link" href="https://youtu.be/eJLN53vo48c?si=9bjo9M5Ti-LBnG6t" target="_blank" rel="noopener noreferrer" aria-label="Play video: RS Valve का महत्व | Motu Patlu Special – Indian Railways Safety Awareness">
+          <img class="thumb" src="RS Valve का महत्व  Motu Patlu Special – Indian Railways Safety Awareness.jpg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>RS Valve</span></div>
+          <span class="chip">RS Valve</span>
+          <span class="vnum">08</span>
           <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10-6.5z"/></svg></span>
         </a>
-        <div class="card-body"><div class="number">Video 08</div><h3>RS Valve का महत्व | Motu Patlu Special – Indian Railways Safety Awareness</h3></div>
+        <div class="card-body">
+          <div class="number">Video 08</div>
+          <h3>RS Valve का महत्व | Motu Patlu Special – Indian Railways Safety Awareness</h3>
+          <a class="watch" href="https://youtu.be/eJLN53vo48c?si=9bjo9M5Ti-LBnG6t" target="_blank" rel="noopener noreferrer" aria-label="Watch: RS Valve का महत्व | Motu Patlu Special – Indian Railways Safety Awareness">Watch video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </article>
 
-      <article class="card" data-search="tc no 332 look back awareness motu patlu look back signal">
-        <a class="thumb-link" href="https://drive.google.com/file/d/1_sfYszcNiJWc_XfYYv2Br9IGINWUma_j/view" target="_blank" rel="noopener noreferrer" aria-label="Open video: TC No. 332 Look Back Awareness with MotuPatlu">
-          <img class="thumb" src="TC No. 332 Look Back Awareness with MotuPatlu.jpg" alt="Video thumbnail" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>Look Back Awareness</span></div>
+      <article class="card" data-search="tc no 332 look back awareness motu patlu look back signal safety awareness">
+        <a class="thumb-link" href="https://youtu.be/FVUWhvUI-J0?si=83gydgyVktcfL-2-" target="_blank" rel="noopener noreferrer" aria-label="Play video: TC No. 332 Look Back Awareness with MotuPatlu">
+          <img class="thumb" src="TC No. 332 Look Back Awareness with MotuPatlu.jpg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>Safety Awareness</span></div>
+          <span class="chip">Safety Awareness</span>
+          <span class="vnum">09</span>
           <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10-6.5z"/></svg></span>
         </a>
-        <div class="card-body"><div class="number">Video 09</div><h3>TC No. 332 Look Back Awareness with MotuPatlu</h3></div>
+        <div class="card-body">
+          <div class="number">Video 09</div>
+          <h3>TC No. 332 Look Back Awareness with MotuPatlu</h3>
+          <a class="watch" href="https://youtu.be/FVUWhvUI-J0?si=83gydgyVktcfL-2-" target="_blank" rel="noopener noreferrer" aria-label="Watch: TC No. 332 Look Back Awareness with MotuPatlu">Watch video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </article>
 
-      <article class="card" data-search="वर्किंग टाइम टेबल working time table जानिए क्यों है यह अनिवार्य wtt">
-        <a class="thumb-link" href="https://drive.google.com/file/d/1invB5cQDTbEm1JouzqY4_1_UfN1ec_Re/view" target="_blank" rel="noopener noreferrer" aria-label="Open video: वर्किंग टाइम टेबल – जानिए क्यों है यह अनिवार्य">
-          <img class="thumb" src="वर्किंग टाइम टेबल – जानिए क्यों है यह अनिवार्य.jpg" alt="Video thumbnail" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>Working Time Table</span></div>
+      <article class="card" data-search="वर्किंग टाइम टेबल working time table जानिए क्यों है यह अनिवार्य wtt rules & procedures">
+        <a class="thumb-link" href="https://youtu.be/3Q9pNU7PKlM?si=JwiZn2RFBUCrI45J" target="_blank" rel="noopener noreferrer" aria-label="Play video: वर्किंग टाइम टेबल – जानिए क्यों है यह अनिवार्य">
+          <img class="thumb" src="वर्किंग टाइम टेबल – जानिए क्यों है यह अनिवार्य.jpg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg><span>Rules & Procedures</span></div>
+          <span class="chip">Rules & Procedures</span>
+          <span class="vnum">10</span>
           <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10-6.5z"/></svg></span>
         </a>
-        <div class="card-body"><div class="number">Video 10</div><h3>वर्किंग टाइम टेबल – जानिए क्यों है यह अनिवार्य</h3></div>
+        <div class="card-body">
+          <div class="number">Video 10</div>
+          <h3>वर्किंग टाइम टेबल – जानिए क्यों है यह अनिवार्य</h3>
+          <a class="watch" href="https://youtu.be/3Q9pNU7PKlM?si=JwiZn2RFBUCrI45J" target="_blank" rel="noopener noreferrer" aria-label="Watch: वर्किंग टाइम टेबल – जानिए क्यों है यह अनिवार्य">Watch video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </article>
+
     </section>
+    <div class="empty" id="emptyMsg">No videos match your search. Try a different word.</div>
+
+    <div class="notice"><strong>Note:</strong> This library is meant for official training and safety awareness of Bhavnagar Division staff. More videos will be added regularly.</div>
   </main>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
-    <strong>Electrical TRO Department</strong> · Bhavnagar Division · Western Railway
-    <div>Training &amp; Safety Video Library</div>
+    <div class="track" aria-hidden="true"></div>
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <img src="indian-railways-logo.png" alt="" onerror="this.style.display='none'">
+        <div>
+          <strong>Electrical TRO Department</strong>
+          <span>Bhavnagar Division · Western Railway · Indian Railways</span>
+          <span>Training &amp; Safety Video Library</span>
+        </div>
+      </div>
+      <div>
+        <h4>Library</h4>
+        <ul>
+          <li><a href="#about">About the library</a></li>
+          <li><a href="#library">Browse all videos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Topics</h4>
+        <ul>
+          <li>KAVACH · RS Valve</li>
+          <li>Look Back · Cattle Run Over</li>
+          <li>Working Time Table · VCD</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <div class="foot-bar-inner">
+        <span>© 2026 Electrical TRO Department, Bhavnagar Division, Western Railway. For official training use.</span>
+        <a class="to-top" href="#top" onclick="window.scrollTo({top:0});return false;">↑ Back to top</a>
+      </div>
+    </div>
   </footer>
+
+  <script>
+    (function () {
+      var box = document.getElementById('searchBox'), cards = document.querySelectorAll('#videoGrid .card'),
+          count = document.getElementById('visibleCount'), empty = document.getElementById('emptyMsg');
+      box.addEventListener('input', function () {
+        var q = box.value.trim().toLowerCase(), n = 0;
+        cards.forEach(function (c) {
+          var show = !q || c.getAttribute('data-search').toLowerCase().indexOf(q) > -1 || c.textContent.toLowerCase().indexOf(q) > -1;
+          c.style.display = show ? '' : 'none'; if (show) n++;
+        });
+        count.textContent = n; empty.style.display = n ? 'none' : 'block';
+      });
+    })();
+  </script>
 </body>
 </html>
