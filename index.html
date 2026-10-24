@@ -59,12 +59,6 @@
     .btn-primary:hover { background: #d63636; }
     .btn-ghost { color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
     .btn-ghost:hover { background: rgba(255,255,255,.1); }
-    /* signal lights */
-    .signal { position: absolute; right: 0; top: 38px; display: flex; flex-direction: column; gap: 9px; padding: 12px 10px; background: #050e1a; border: 2px solid #26405c; border-radius: 22px; box-shadow: 0 8px 20px rgba(0,0,0,.4); }
-    .signal i { display: block; width: 18px; height: 18px; border-radius: 50%; }
-    .signal i:nth-child(1) { background: var(--red); box-shadow: 0 0 14px 3px rgba(198,40,40,.7); }
-    .signal i:nth-child(2) { background: #3a3317; }
-    .signal i:nth-child(3) { background: #14301f; }
     /* rail track */
     .track { position: absolute; left: 0; right: 0; bottom: 0; height: 26px; background: var(--navy-night); border-top: 4px solid var(--gold); }
     .track::before { /* sleepers */
@@ -77,6 +71,7 @@
       background: linear-gradient(#aab6c4 0 3px, transparent 3px 9px, #aab6c4 9px 12px);
       opacity: .75;
     }
+
 
     /* ---------- STATS STRIP ---------- */
     .stats { width: var(--wrap); margin: -26px auto 0; position: relative; z-index: 2; display: grid; grid-template-columns: repeat(4, 1fr); background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 12px 30px rgba(15,35,55,.13); overflow: hidden; }
@@ -175,7 +170,6 @@
       .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
       .foot-inner { grid-template-columns: 1fr 1fr; }
       .foot-brand { grid-column: 1 / -1; }
-      .signal { display: none; }
     }
     @media (max-width: 580px) {
       :root { --wrap: calc(100% - 28px); }
@@ -201,6 +195,33 @@
       .foot-bar-inner { flex-direction: column; align-items: flex-start; }
     }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+
+    /* who-is-it-for strip (top) */
+    .intro { grid-template-columns: 1fr; margin-top: 30px; }
+    .audience ul { grid-template-columns: repeat(4, 1fr); }
+    .audience h2 { margin-bottom: 0; }
+    @media (max-width: 900px) { .audience ul { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 580px) { .audience ul { grid-template-columns: 1fr; } }
+    /* about + stats at bottom */
+    .about-bottom { margin-top: 28px; display: grid; gap: 24px; }
+    .about-bottom .stats { width: 100%; margin: 0; }
+
+    /* ---------- COVER (header with train photo) ---------- */
+    header { --hero-h: clamp(220px, 33.4vw, 660px); background: var(--navy-night); }
+    header::before { display: none; }
+    .hero-art { position: absolute; inset: 0 0 auto 0; height: var(--hero-h); -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 100%); mask-image: linear-gradient(to bottom, #000 58%, transparent 100%); }
+    .hero-art img { width: 100%; height: 100%; object-fit: cover; object-position: 28% 50%; display: block; }
+    .hero-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,23,42,.35) 0, transparent 30%); }
+    header .header-inner { padding-top: calc(var(--hero-h) * .6); padding-bottom: 56px; }
+    header .brand { padding: 22px 26px; border-radius: 18px; background: linear-gradient(120deg, rgba(7,23,42,.82), rgba(11,34,57,.62)); border: 1px solid rgba(255,255,255,.14); border-left: 5px solid var(--red); box-shadow: 0 18px 40px rgba(0,0,0,.45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+    .subtitle { display: inline-block; margin-top: 12px; padding: 5px 16px; border: 1px solid rgba(224,177,74,.7); border-radius: 999px; color: #f4d88d; font-weight: 700; font-size: .95rem; letter-spacing: .06em; text-transform: uppercase; background: rgba(224,177,74,.1); }
+    @media (max-width: 580px) {
+      header { --hero-h: 230px; }
+      .hero-art img { object-position: 22% 50%; }
+      header .header-inner { padding-top: calc(var(--hero-h) * .62); padding-bottom: 46px; }
+      header .brand { padding: 18px 16px; border-left-width: 4px; }
+      .subtitle { font-size: .8rem; padding: 4px 12px; }
+    }
   </style>
 </head>
 <body>
@@ -208,15 +229,14 @@
 
   <!-- ===== HEADER ===== -->
   <header>
+    <div class="hero-art" aria-hidden="true"><img src="images/cover.jpg" alt="" fetchpriority="high"></div>
     <div class="header-inner">
-      <div class="signal" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="brand">
         <!-- Indian Railways logo: keep indian-railways-logo.png in the same folder as index.html -->
         <div class="logo-wrap" id="logoWrap">
           <img class="logo" src="indian-railways-logo.png" alt="Indian Railways logo" onerror="document.getElementById('logoWrap').style.display='none'">
         </div>
         <div class="brand-text">
-          <p class="eyebrow">Western Railway · Bhavnagar Division</p>
           <h1>ELECTRICAL TRO DEPARTMENT,<br>BHAVNAGAR DIVISION, WESTERN RAILWAY</h1>
           <p class="subtitle">Training &amp; Safety Video Library</p>
           <div class="hero-actions">
@@ -229,38 +249,9 @@
     <div class="track" aria-hidden="true"></div>
   </header>
 
-  <!-- ===== STATS ===== -->
-  <section class="stats" aria-label="Library at a glance">
-    <div class="stat"><b>10</b><span>Training &amp;<br>awareness videos</span></div>
-    <div class="stat"><b>2</b><span>Languages:<br>Hindi &amp; English</span></div>
-    <div class="stat"><b>4</b><span>Crew categories<br>served</span></div>
-    <div class="stat"><b>Any</b><span>Device: phone,<br>tablet or PC</span></div>
-  </section>
-
   <main>
     <!-- ===== INTRODUCTION ===== -->
-    <section class="intro" id="about" aria-label="About the video library">
-      <div class="panel">
-        <p class="kicker">Welcome</p>
-        <h2>One place for crew training and safety awareness</h2>
-        <p>The Electrical TRO Department of Bhavnagar Division brings its training and safety awareness videos together in this library, so that every member of the running staff can learn, revise and refresh key safety practices at any time.</p>
-        <p>The videos cover important safety topics such as KAVACH, RS Valve, Look Back, Cattle Run Over and the Working Time Table, presented in simple language to make the message clear and easy to remember.</p>
-        <div class="features">
-          <div class="feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
-            <strong>Safety first</strong><span>Clear, practical awareness messages</span>
-          </div>
-          <div class="feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 5l9 4.5-9 4.5z"/><path d="M7 12v4.5c0 1 2.2 2.5 5 2.5s5-1.5 5-2.5V12"/></svg>
-            <strong>Training</strong><span>Learn and revise at your own pace</span>
-          </div>
-          <div class="feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>
-            <strong>Anywhere</strong><span>Works on phone, tablet and PC</span>
-          </div>
-        </div>
-      </div>
-
+    <section class="intro" aria-label="Who the library is for">
       <aside class="panel audience">
         <p class="kicker">Who is it for</p>
         <h2>Made for frontline crew and their supervisors</h2>
@@ -440,6 +431,36 @@
     <div class="empty" id="emptyMsg">No videos match your search. Try a different word.</div>
 
     <div class="notice"><strong>Note:</strong> This library is meant for official training and safety awareness of Bhavnagar Division staff. More videos will be added regularly.</div>
+
+    <!-- ===== ABOUT + STATS (below note) ===== -->
+    <section class="about-bottom" aria-label="About the video library">
+      <div class="panel" id="about">
+        <p class="kicker">Welcome</p>
+        <h2>One place for crew training and safety awareness</h2>
+        <p>The Electrical TRO Department of Bhavnagar Division brings its training and safety awareness videos together in this library, so that every member of the running staff can learn, revise and refresh key safety practices at any time.</p>
+        <p>The videos cover important safety topics such as KAVACH, RS Valve, Look Back, Cattle Run Over and the Working Time Table, presented in simple language to make the message clear and easy to remember.</p>
+        <div class="features">
+          <div class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+            <strong>Safety first</strong><span>Clear, practical awareness messages</span>
+          </div>
+          <div class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 5l9 4.5-9 4.5z"/><path d="M7 12v4.5c0 1 2.2 2.5 5 2.5s5-1.5 5-2.5V12"/></svg>
+            <strong>Training</strong><span>Learn and revise at your own pace</span>
+          </div>
+          <div class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>
+            <strong>Anywhere</strong><span>Works on phone, tablet and PC</span>
+          </div>
+        </div>
+      </div>
+      <section class="stats" aria-label="Library at a glance">
+    <div class="stat"><b>10</b><span>Training &amp;<br>awareness videos</span></div>
+    <div class="stat"><b>2</b><span>Languages:<br>Hindi &amp; English</span></div>
+    <div class="stat"><b>4</b><span>Crew categories<br>served</span></div>
+    <div class="stat"><b>Any</b><span>Device: phone,<br>tablet or PC</span></div>
+  </section>
+    </section>
   </main>
 
   <!-- ===== FOOTER ===== -->
